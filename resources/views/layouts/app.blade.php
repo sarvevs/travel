@@ -61,7 +61,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('main.about') }}">About</a>
                         </li>
-
+                        <li>
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link bg-aqua-active" href="#" id="english-link">EN</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" id="spanish-link">ES</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
 
                 </div>

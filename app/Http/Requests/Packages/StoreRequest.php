@@ -24,8 +24,10 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'country' => 'required|string',
-            'description' => 'required|string',
+            'en_country' => 'required|string',
+            'en_description' => 'required|string',
+            'ua_country' => 'string',
+            'ua_description' => 'string',
             'image' => 'required|file|mimes:jpeg,png,jpg,gif|max:2048',
             'rate' => 'required|integer',
             'price' => 'required|integer',
@@ -35,8 +37,8 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'country.required' => 'Це поле обов\'язкове до заповнення',
-            'description.required' => 'Це поле обов\'язкове до заповнення',
+            'en_country.required' => 'Це поле обов\'язкове до заповнення',
+            'en_description.required' => 'Це поле обов\'язкове до заповнення',
             'image.required' => 'Це поле обов\'язкове до заповнення',
             'image.file' => 'Потрібно вибрати фото',
             'rate' => 'Це поле обов\'язкове до заповнення',
