@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "caouecs/laravel-lang": "*",
+        "astrotomic/laravel-translatable": "^11.12",
         "guzzlehttp/guzzle": "^7.2",
         "laravel-lang/common": "*",
         "laravel-lang/json-fallback-hotfix": "*",

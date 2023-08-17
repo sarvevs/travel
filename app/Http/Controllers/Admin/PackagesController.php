@@ -9,7 +9,11 @@ use App\Models\Package;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Astrotomic\Translatable\Translatable;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Locales;
 
 class PackagesController extends Controller
 {
@@ -29,13 +33,37 @@ class PackagesController extends Controller
     {
         try {
             $data = $request->validated();
+            $data['image'] = Storage::disk('public')->put('/images', $data['image']);
 
             DB::beginTransaction();
-            $data['image'] = Storage::disk('public')->put('/images', $data['image']);
-            Package::firstOrCreate($data);
+
+            $package = new Package([
+                'image' => $data['image'],
+                'rate' => $data['rate'], // Добавьте это
+                'price' => $data['price'], // Добавьте это
+            ]);
+            $package->save();
+
+            if (isset($data['en_country']) && isset($data['en_description'])) {
+                $package->translateOrNew('en')->country = $data['en_country'];
+                $package->translateOrNew('en')->description = $data['en_description'];
+            }
+
+            if (isset($data['ua_country']) && isset($data['ua_description'])) {
+                $package->translateOrNew('ua')->country = $data['ua_country'];
+                $package->translateOrNew('ua')->description = $data['ua_description'];
+            }
+
+            $package->save();
+
             DB::commit();
         } catch (Exception $exception) {
             DB::rollBack();
+            // Выводим описание ошибки
+            echo 'Ошибка: ' . $exception->getMessage();
+            // Или лучше записать в лог
+            Log::error('Ошибка: ' . $exception->getMessage());
+            // Прерываем выполнение
             abort(500);
         }
 

@@ -26,23 +26,35 @@
                         <form action="{{ route('admin.packages.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group w-25">
-                                <input type="text" class="form-control" name="country" placeholder="Країна"
-                                       value="{{ old('country') }}">
-                                @error('country')
+                                <label>Країна</label>
+
+                                <input type="text" class="form-control" name="en_country" placeholder="Країна_en"
+                                       value="{{ old('en_country') }}">
+                                @error('en_country')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-
+                            <div class="form-group w-25">
+                                <input type="text" class="form-control" name="ua_country" placeholder="Країна_ua"
+                                       value="{{ old('ua_country') }}">
+                                @error('ua_country')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <div>
-                                <div class="form-group ">
-                                    <label>Контент</label>
-                                    <form method="post">
-                                        @csrf
-                                        <textarea id="summernote" name="description"> {{ old('description') }}</textarea>
-                                        @error('description')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </form>
+                                <div class="form-group">
+                                    <label>Контент (EN)</label>
+                                    <textarea id="summernote" name="en_description">{{ old('en_description') }}</textarea>
+                                    @error('en_description')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>Контент (UA)</label>
+                                    <textarea id="summernote2" name="ua_description">{{ old('ua_description') }}</textarea>
+                                    @error('ua_description')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group w-50">
                                     <label for="exampleInputFile">Додати фото</label>
