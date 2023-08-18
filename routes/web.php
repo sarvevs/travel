@@ -15,11 +15,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::group(['prefix' => 'books'], function () {
-Route::get('/create', [\App\Http\Controllers\Admin\UserRequestController::class, 'create'])->name('book.create');
-Route::post('/', [\App\Http\Controllers\Admin\UserRequestController::class, 'store'])->name('book.store');
 
-});
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/', [\App\Http\Controllers\Admin\IndexController::class, 'index'])->name('admin.main.index');
@@ -32,21 +28,30 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/user_requests/{user_request}', [\App\Http\Controllers\Admin\UserRequestController::class, 'show'])->name('admin.user_requests.show');
 });
 
-Route::get('/packages', [\App\Http\Controllers\MainController::class, 'packageIndex'])->name('main.packages');
-Route::get('/gallery', [\App\Http\Controllers\MainController::class, 'galleryIndex'])->name('main.gallery');
-Route::get('/', [\App\Http\Controllers\MainController::class, 'mainSlider'])->name('main');
 
-//Route::get('/', function () {
-//    return view('main.main');
-//})->name('main');
 
-Route::get('/services', function () {
-    return view('main.services');
-})->name('main.services');
+Route::get('locale/{locale}', [\App\Http\Controllers\ChangeLocaleController::class, 'changeLocale'])->name('locale');
 
-Route::get('/about', function () {
-    return view('main.about');
-})->name('main.about');
+Route::middleware('set_locale')->group(function () {
+    Route::group(['prefix' => 'books'], function () {
+        Route::get('/create', [\App\Http\Controllers\Admin\UserRequestController::class, 'create'])->name('book.create');
+        Route::post('/', [\App\Http\Controllers\Admin\UserRequestController::class, 'store'])->name('book.store');
+    });
+    Route::get('/packages', [\App\Http\Controllers\MainController::class, 'packageIndex'])->name('main.packages');
+    Route::get('/gallery', [\App\Http\Controllers\MainController::class, 'galleryIndex'])->name('main.gallery');
+    Route::get('/', [\App\Http\Controllers\MainController::class, 'mainSlider'])->name('main');
+
+    Route::get('/services', function () {
+        return view('main.services');
+    })->name('main.services');
+
+    Route::get('/about', function () {
+        return view('main.about');
+    })->name('main.about');
+
+});
+
+
 
 Auth::routes();
 
