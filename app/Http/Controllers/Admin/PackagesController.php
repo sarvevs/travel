@@ -82,26 +82,46 @@ class PackagesController extends Controller
         return view('admin.packages.edit', compact('package'));
     }
 
-    public function update(UpdateRequest $request, Package $package)
+    public function update(UpdateRequest $request, $id)
     {
         try {
             $data = $request->validated();
-            DB::beginTransaction();
-            if (isset($data['image'])) {
-                $data['image'] = Storage::disk('public')->put('/images', $data['image']);
-            }
+            $package = Package::findOrFail($id);
 
-            $package->update($data);
+            DB::beginTransaction();
+
+
+
+//            $package->image = $data['image'];
+            $package->rate = $data['rate'];
+            $package->price = $data['price'];
+
+            foreach (['en', 'ua'] as $locale) {
+                foreach (['country', 'description'] as $field) {
+                    $package->translateOrNew($locale)->$field = $data[$locale . '_' . $field];
+                }
+            }
+            if ($request->hasFile('image')) {
+                $data['image'] = Storage::disk('public')->put('/images', $data['image']);
+                $package->image = $data['image'];
+                $package->save();
+            }
+            $package->save();
 
             DB::commit();
         } catch (Exception $exception) {
             DB::rollBack();
+            // Выводим описание ошибки
+            echo 'Ошибка: ' . $exception->getMessage();
+            // Или лучше записать в лог
+            Log::error('Ошибка: ' . $exception->getMessage());
+            // Прерываем выполнение
             abort(500);
         }
 
-        return view('admin.packages.index', compact('package'));
-
+        return redirect()->route('admin.packages.index');
     }
+
 
     public function destroy(Package $package)
     {

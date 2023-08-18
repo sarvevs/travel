@@ -80,22 +80,25 @@
     text-shadow: 0 1px 1px black;
     margin-top: 5px;
 }
-.change-content::after {
+.change-content {
     content: ' ';
     color: #ffa500;
     text-shadow: 0 1px 1px black;
     animation: changetext 10s infinite linear;
 }
-@keyframes changetext {
-    0%{content: "France";}
-    10%{content: "Spain";}
-    20%{content: "USA";}
-    30%{content: "China";}
-    40%{content: "Japanes";}
-    50%{content: "Italia";}
-    60%{content: "Germany";}
-    70%{content: "Polish";}
-}
+/*@keyframes changetext {*/
+/*    0%{content: "France";}*/
+/*    10%{content: "Spain";}*/
+/*    20%{content: "USA";}*/
+/*    30%{content: "China";}*/
+/*    40%{content: "Japanes";}*/
+/*    50%{content: "Italia";}*/
+/*    60%{content: "Germany";}*/
+/*    70%{content: "Polish";}*/
+/*    80%{content: "Pakistan";}*/
+/*    90%{content: "Norway";}*/
+/*    100%{content: "India";}*/
+/*}*/
 .home .content p {
     color: white;
     font-size: 15px;
@@ -173,7 +176,7 @@
     height: 200px;
 }
 .book .submit {
-    width: 160px;
+    width: auto;
     font-size: 16px;
     font-weight: 550;
     background: #ffa500;

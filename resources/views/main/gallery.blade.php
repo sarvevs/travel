@@ -6,7 +6,7 @@
     <section class="gallery" id="gallery">
         <div class="container">
             <div class="main-text">
-                <h1><span>G</span>allery</h1>
+                <h1><span>{{ trans('main.g') }}</span>{{ trans('main.allery') }}</h1>
             </div>
 
             <div class="row" style="margin-top: 30px;">

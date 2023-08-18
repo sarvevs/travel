@@ -7,7 +7,7 @@
         <div class="container">
 
             <div class="main-text">
-                <h1><span>P</span>ackages</h1>
+                <h1><span>{{ trans('main.p') }}</span>{{ trans('main.ackages') }}</h1>
             </div>
             <div class="row" style="margin-top: 30px;">
                 @foreach($packages as $package)
@@ -15,8 +15,9 @@
                     <div class="card mb-3" >
                         <img src="{{ asset('storage/' . $package->image) }}" alt="">
                         <div class="card-body">
-                            <h3>{{ $package->country }}</h3>
-                            <p>{{ strip_tags($package->description) }}</p>
+                            <h3>{{ $package->translate(App::getLocale())->country}}</h3>
+                            <p>{{ Str::limit(strip_tags($package->translate(App::getLocale())->description), 300) }}</p>
+
                             <div class="star">
                                 <div class="rating">
                                     @for ($i = 1; $i <= 5; $i++)

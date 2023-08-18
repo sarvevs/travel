@@ -4,14 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 use App\Models\Package;
+use App\Models\PackageTranslation;
+use Astrotomic\Translatable\Locales;
+
 
 class MainController extends Controller
 {
 
     public function packageIndex()
     {
+        $currentLocale = \App::getLocale();
+//        dd($currentLocale);
+//        $package = Package::find(1); // Здесь 1 - это ID пакета, который вы хотите проверить
+//
+//        if ($package->hasTranslation($currentLocale)) {
+//            dd("Перевод для текущей локали ($currentLocale) существует");
+//        } else {
+//            dd("Перевод для текущей локали ($currentLocale) отсутствует");
+//        }
+
         $packages = Package::all();
-        return view('main.packages', compact('packages'));
+
+        return view('main.packages', compact('packages', ));
     }
 
     public function galleryIndex()

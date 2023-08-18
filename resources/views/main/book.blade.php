@@ -4,7 +4,7 @@
     <section class="book" id="book">
         <div class="container">
             <div class="main-text">
-                <h1><span>B</span>ook</h1>
+                <h1><span>{{ trans('main.b') }}</span>{{ trans('main.ook') }}</h1>
             </div>
 
             <div class="row">
@@ -18,13 +18,13 @@
                     <form action="{{ route('book.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('POST')
-                        <input type="text" class="form-control" placeholder="Where To" name="country" ><br>
-                        <input type="text" class="form-control" placeholder="How Many" name="how_many" ><br>
-                        <input type="date" class="form-control" placeholder="Arrivals" name="arrivals" ><br>
-                        <input type="date" class="form-control" placeholder="Leaving" name="leaving" ><br>
+                        <input type="text" class="form-control" placeholder="{{ trans('main.book.where') }}" name="country" ><br>
+                        <input type="text" class="form-control" placeholder="{{ trans('main.book.how') }}" name="how_many" ><br>
+                        <input type="date" class="form-control" placeholder="{{ trans('main.book.arrivals') }}" name="arrivals" ><br>
+                        <input type="date" class="form-control" placeholder="{{ trans('main.book.leaving') }}" name="leaving" ><br>
                         <textarea  class="form-control" rows="5" name="info"
-                                  placeholder="Enter Your Name & Details"></textarea>
-                        <input type="submit" value="Book Now" class="submit" required>
+                                  placeholder="{{ trans('main.book.info') }}"></textarea>
+                        <input type="submit" value="{{ trans('main.book.now') }}" class="submit" required>
 
                     </form>
                 </div>

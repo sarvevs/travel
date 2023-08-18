@@ -44,30 +44,30 @@
                 <div class="collapse navbar-collapse" id="mynavbar">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('main')}}">Home</a>
+                            <a class="nav-link active" href="{{ route('main')}}">{{ trans('navbar.home') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('book.create') }}">Book</a>
+                            <a class="nav-link" href="{{ route('book.create') }}">{{ trans('navbar.book') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('main.packages') }}">Packages</a>
+                            <a class="nav-link" href="{{ route('main.packages') }}">{{ trans('navbar.packages') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('main.services') }}">Services</a>
+                            <a class="nav-link" href="{{ route('main.services') }}">{{ trans('navbar.services') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('main.gallery') }}">Gallery</a>
+                            <a class="nav-link" href="{{ route('main.gallery') }}">{{ trans('navbar.gallery') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('main.about') }}">About</a>
+                            <a class="nav-link" href="{{ route('main.about') }}">{{ trans('navbar.about') }}</a>
                         </li>
                         <li>
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link bg-aqua-active" href="#" id="english-link">EN</a>
+                                    <a class="nav-link bg-aqua-active "  href="{{ route('locale', 'en') }}" id="english-link">EN</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#" id="spanish-link">ES</a>
+                                    <a class="nav-link "  href="{{ route('locale', 'ua') }}" id="spanish-link">UA</a>
                                 </li>
                             </ul>
                         </li>
@@ -80,10 +80,10 @@
         <!-- Home Section Start -->
         <div class="home">
             <div class="content">
-                <h5>Welcome To World</h5>
-                <h1>Visit <span class="changecontent"></span></h1>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae, nisi.</p>
-                <a href="{{ route('book.create') }}">Book Place</a>
+                <h5>{{ trans('head.home.h5') }}</h5>
+                <h1>{{ trans('head.home.h1') }} <span class="change-content"></span></h1>
+                <p>{{ trans('head.home.p') }}</p>
+                <a href="{{ route('book.create') }}">{{ trans('head.book.place') }}</a>
             </div>
         </div>
         <!-- Home Section End -->
@@ -95,7 +95,7 @@
     <!-- Footer Start -->
     <footer id="footer">
         <h1><span>T</span>ravel</h1>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus fugiat, ipsa quos nulla qui alias.</p>
+        <p>{{ trans('main.footer.p') }}</p>
         <div class="social-links">
            <a href="https://twitter.com/"> <i class="fa-brands fa-twitter"></i></a>
             <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
@@ -104,10 +104,10 @@
             <a href="https://ru.pinterest.com/"><i class="fa-brands fa-pinterest-p"></i></a>
         </div>
         <div class="credit">
-            <p>Designed By <a href="#">@sarvesVS</a></p>
+            <p>{{ trans('main.designed') }} <a href="#">@sarvesVS</a></p>
         </div>
         <div class="copyright">
-            <p>&copy;Copyright @sarvesVS. All Rights Reserved</p>
+            <p>&copy;{{ trans('main.copyright') }}</p>
         </div>
     </footer>
     <!-- Footer End -->
@@ -141,7 +141,65 @@
             // Другие настройки по вашему выбору
         });
     });
+</script>
+<script>
+    const changingTextElement = document.querySelector('.change-content');
+    const translationKeys = ['France', 'Spain', 'USA', 'China', 'Japanes', 'Italia', 'Germany', 'Polish'];
+    let currentTranslationIndex = 0;
+
+    const translations = {
+        en: {
+            France: 'France',
+            Spain: 'Spain',
+            USA: 'USA',
+            China: 'China',
+            Japanes: 'Japan',
+            Italia: 'Italy',
+            Germany: 'Germany',
+            Polish: 'Poland'
+        },
+        ua: {
+            France: 'Франція',
+            Spain: 'Іспанія',
+            USA: 'США',
+            China: 'Китай',
+            Japanes: 'Японія',
+            Italia: 'Італія',
+            Germany: 'Німеччина',
+            Polish: 'Польща'
+        }
+    };
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+    function getCurrentLanguage() {
+        // Получаем значение параметра "lang" из URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const langParam = urlParams.get('lang');
+
+        // По умолчанию выбираем язык "ua"
+        return langParam || 'en';
+    }
+    function changeTranslation() {
+        const currentKey = translationKeys[currentTranslationIndex];
+        // const currentLanguage = 'en'; // Замените на логику определения текущего языка
+        const currentLanguage = getCurrentLanguage();
+        const translatedText = translations[currentLanguage][currentKey];
+        changingTextElement.textContent = translatedText;
+        currentTranslationIndex = (currentTranslationIndex + 1) % translationKeys.length;
+    }
 
 
+    // Определение текущего языка
+
+
+    // Вызов функции для определения текущего языка
+
+    // Начать анимацию при загрузке страницы
+    changeTranslation();
+    setInterval(changeTranslation, 5000); // Изменить текст каждые 5 секунд
 </script>
 </html>

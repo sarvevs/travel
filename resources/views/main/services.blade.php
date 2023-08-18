@@ -6,7 +6,7 @@
     <section class="services" id="services">
         <div class="container">
             <div class="main-text">
-                <h1><span>S</span>ervices</h1>
+                <h1><span>{{ trans('main.s') }}</span>{{ trans('main.ervices') }}</h1>
             </div>
 
             <div class="row" style="margin-top: 30px;">
@@ -14,8 +14,8 @@
                     <div class="card">
                         <i class="fas fa-utensils"></i>
                         <div class="card-body">
-                            <h3>Affordable Hotel</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, officia.</p>
+                            <h3>{{ trans('main.hotel') }}</h3>
+                            <p>{{ trans('main.hotel.p') }}</p>
                         </div>
                     </div>
                 </div>
@@ -23,8 +23,8 @@
                     <div class="card">
                         <i class="fas fa-hotel"></i>
                         <div class="card-body">
-                            <h3>Food And Drinks</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, officia.</p>
+                            <h3>{{ trans('main.food') }}</h3>
+                            <p>{{ trans('main.food.p') }}</p>
                         </div>
                     </div>
                 </div>
@@ -32,8 +32,8 @@
                     <div class="card">
                         <i class="fas fa-bullhorn"></i>
                         <div class="card-body">
-                            <h3>Safty Guide</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, officia.</p>
+                            <h3>{{ trans('main.guide') }}</h3>
+                            <p>{{ trans('main.guide.p') }}</p>
                         </div>
                     </div>
                 </div>
@@ -45,8 +45,8 @@
                     <div class="card">
                         <i class="fas fa-globe-asia"></i>
                         <div class="card-body">
-                            <h3>Around The World</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, officia.</p>
+                            <h3>{{ trans('main.around') }}</h3>
+                            <p>{{ trans('main.around.p') }}</p>
                         </div>
                     </div>
                 </div>
@@ -54,8 +54,8 @@
                     <div class="card">
                         <i class="fas fa-plane"></i>
                         <div class="card-body">
-                            <h3>Faster Travel</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, officia.</p>
+                            <h3>{{ trans('main.faster') }}</h3>
+                            <p>{{ trans('main.faster.p') }}</p>
                         </div>
                     </div>
                 </div>
@@ -63,8 +63,8 @@
                     <div class="card">
                         <i class="fas fa-hiking"></i>
                         <div class="card-body">
-                            <h3>Adventures</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, officia.</p>
+                            <h3>{{ trans('main.adventures') }}</h3>
+                            <p>{{ trans('main.adventures.p') }}</p>
                         </div>
                     </div>
                 </div>

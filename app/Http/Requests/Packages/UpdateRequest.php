@@ -24,8 +24,10 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'country' => 'nullable|string',
-            'description' => 'nullable|string',
+            'en_country' => 'required|string',
+            'en_description' => 'required|string',
+            'ua_country' => 'string',
+            'ua_description' => 'string',
             'image' => 'nullable|file|mimes:jpeg,png,jpg,gif|max:2048',
             'rate' => 'nullable|integer',
             'price' => 'nullable|integer',

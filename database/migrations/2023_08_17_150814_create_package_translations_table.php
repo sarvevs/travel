@@ -18,7 +18,7 @@ return new class extends Migration
 
         Schema::create('package_translations', function (Blueprint $table) {
             // mandatory fields
-            $table->id(); // Laravel 5.8+ use bigIncrements() instead of increments()
+            $table->bigIncrements('id'); // Laravel 5.8+ use bigIncrements() instead of increments()
             $table->string('locale')->index();
 
             // Foreign key to the main model
